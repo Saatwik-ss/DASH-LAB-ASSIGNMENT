@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat with AI</title>
+    <style>
+        /* Basic styling for a dark theme */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1e1e1e;
+            color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .chat-box {
+            background-color: #2a2a2a;
+            border-radius: 10px;
+            padding: 20px;
+            width: 800px;
+            text-align: center;
+        }
+
+        .input-box {
+            width: 75%;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            border: 1px solid #444;
+            background-color: #333;
+            color: #f0f0f0;
+        }
+
+        .input-box:focus {
+            outline: none;
+            border-color: #666;
+        }
+
+        .button {
+            padding: 10px 20px;
+            background-color: #4caf50;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+
+        .response {
+            margin-top: 20px;
+            background-color: #333;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        h1 {
+            color: #f0f0f0;
+        }
+
+        .message {
+            padding: 5px;
+            background-color: #444;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="chat-box">
+        <h1>Chat with AI</h1>
+        <form action="/process_prompt" method="POST">
+            <input type="text" name="user_input" class="input-box" placeholder="Type your question here..." required>
+            <br>
+            <button type="submit" class="button">Submit</button>
+        </form>
+        
+        {% if response %}
+        <div class="response">
+            <div class="message">
+                <strong>Response:</strong><br>
+                {{ response }}
+            </div>
+        </div>
+        {% endif %}
+
+        {% if message %}
+        <div class="response">
+            <div class="message">
+                <strong>Error:</strong><br>
+                {{ message }}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+</body>
+</html>
