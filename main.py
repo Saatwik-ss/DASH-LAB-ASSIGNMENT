@@ -1,20 +1,28 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, send_file
 import json
 import time
 from groq import Groq
+import os
 
 # Initialize Flask app
 app = Flask(__name__)
 
 # Initialize Groq client
 client = Groq(
-    api_key="", 
+    api_key="",
 )
 output_file = "output.json"
+
+# Ensure the output file exists
+if not os.path.exists(output_file):
+    with open(output_file, "w") as file:
+        json.dump([], file)
+
 
 @app.route('/')
 def home():
     return render_template('index.html')
+
 
 @app.route('/process_prompt', methods=['POST'])
 def process_prompt():
@@ -62,6 +70,13 @@ def process_prompt():
 
     except Exception as e:
         return render_template('index.html', message=f"Error: {e}")
+
+
+@app.route('/download')
+def download():
+    """Route to download the output.json file."""
+    return send_file(output_file, as_attachment=True)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
