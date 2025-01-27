@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat with AI</title>
+    <title>Chat Bot</title>
     <style>
         /* Basic styling for a dark theme */
         body {
@@ -26,7 +26,7 @@
             background-color: #2a2a2a;
             border-radius: 10px;
             padding: 20px;
-            width: 800px;
+            width: 700px;
             text-align: center;
         }
 
@@ -78,13 +78,26 @@
             margin: 10px 0;
         }
 
+        .download-link {
+            margin-top: 20px;
+            display: inline-block;
+            text-decoration: none;
+            padding: 10px 15px;
+            color: #fff;
+            background-color: #007bff;
+            border-radius: 5px;
+        }
+
+        .download-link:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
     <div class="chat-box">
-        <h1>Chat with AI</h1>
+        <h1>Chat Bot</h1>
         <form action="/process_prompt" method="POST">
             <input type="text" name="user_input" class="input-box" placeholder="Type your question here..." required>
             <br>
@@ -108,6 +121,9 @@
             </div>
         </div>
         {% endif %}
+
+        <!-- Add download link for output.json -->
+        <a href="/download" class="download-link">Download Chat History (output.json)</a>
     </div>
 </div>
 
