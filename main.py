@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 # Initialize Groq client
 client = Groq(
-    api_key="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",
+    api_key="",
 )
 output_file = "output.json"
 
